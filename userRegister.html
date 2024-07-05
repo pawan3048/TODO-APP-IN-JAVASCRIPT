@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loginTodo</title>
+    <style>
+        form{
+            border: 2px solid;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            margin: 50px auto;
+        }
+        label, input{
+            font-size: 18px;
+            padding: 5px;
+        }
+        input[type="submit"]{
+            margin-top: 30px;
+        }
+        .onlogin-jump-link{
+            display: block;
+            text-align: center;
+            border: 1px solid skyblue;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 10px 5px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h2>Register</h2>
+        <label>Name</label>
+        <input type="text"" name="name" id="name">
+        <label>Email</label>
+        <input type="email" name="email" id="email">
+        <label>Password</label>
+        <input type="password" name="password" id="password">
+        <input type="submit" value="submit">
+        <a href="./loginTodo.html" class="onlogin-jump-link">I've alreday registered</a>
+    </form>
+    <script>
+        var form = document.querySelector("form");
+        var loginData = JSON.parse(localStorage.getItem("loginData"))||[]
+        form.addEventListener("submit",()=>{
+            event.preventDefault();
+            var loginObj = {
+                name: form.name.value,
+                email: form.email.value,
+                pwd: form.password.value,
+            }
+            loginData.push(loginObj);
+            var jsonUserObj = JSON.stringify(loginData)
+            localStorage.setItem("loginData",jsonUserObj);
+        });
+        console.log(loginData)
+
+    </script>
+</body>
+</html>
